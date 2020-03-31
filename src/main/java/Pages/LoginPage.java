@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        initElements(driver, this);
+        initElements(ajaxLocator, this);
     }
 
     public void enterUsername(String username) {

@@ -16,12 +16,19 @@ public class HomePage extends BasePage {
     @FindBy (css = "#option-menu > li:nth-child(1)")
     protected WebElement welcomeText;
 
+    @FindBy (css = "#admin > ul > li:nth-child(1) > ul > li:nth-child(2) > a")
+    protected WebElement locationsButton;
+
     public HomePage(WebDriver driver) {
         super(driver);
-        initElements(driver, this);
+        initElements(ajaxLocator, this);
     }
 
     public String getWelcomeToHomePageText() {
         return (this.welcomeText.getText());
+    }
+
+    public void goToLocationsPage() {
+        this.locationsButton.click();
     }
 }
