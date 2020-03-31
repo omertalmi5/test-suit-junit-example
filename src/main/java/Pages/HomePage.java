@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
@@ -21,7 +22,7 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        initElements(ajaxLocator, this);
+        initElements(new AjaxElementLocatorFactory(driver, 3), this);
     }
 
     public String getWelcomeToHomePageText() {
