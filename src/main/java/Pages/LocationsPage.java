@@ -3,11 +3,15 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class LocationsPage extends BasePage {
+    @FindBy (id = "rightMenu")
+    private WebElement locationPageFrame;
+
     @FindBy (id = "btnAdd")
     private WebElement addLocationButton;
 
@@ -22,7 +26,8 @@ public class LocationsPage extends BasePage {
 
     public LocationsPage(WebDriver driver) {
         super(driver);
-        initElements(ajaxLocator, this);
+        initElements(new AjaxElementLocatorFactory(driver, 10), this);
+        driver.switchTo().frame(this.locationPageFrame);
     }
 
     public void clickAddLocation() {
