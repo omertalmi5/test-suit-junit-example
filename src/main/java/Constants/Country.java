@@ -1,4 +1,4 @@
-package Enums;
+package Constants;
 
 public enum Country {
     ISRAEL,

@@ -1,16 +1,16 @@
-package Tests;
+package Tests.UnfinishedTests;
 
-import Enums.Country;
+import Constants.Country;
 import Pages.HomePage;
 import Pages.LocationsPage;
-import static org.junit.Assert.*;
+import Tests.BaseTest;
 import org.junit.Test;
-import static Processes.Functions.login;
+import static Processes.Functions.loginAsAdmin;
 
 public class AddLocationTest extends BaseTest {
     @Test
     public void addLocationTest() {
-        login(driver, USERNAME, PASSWORD);
+        loginAsAdmin(driver);
         HomePage homePage = new HomePage(driver);
         homePage.goToLocationsPage();
 
@@ -19,6 +19,5 @@ public class AddLocationTest extends BaseTest {
         locationsPage.enterLocationName("hello");
         locationsPage.enterLocationCountry(Country.ARGENTINA.toString());
         locationsPage.saveLocation();
-
     }
 }

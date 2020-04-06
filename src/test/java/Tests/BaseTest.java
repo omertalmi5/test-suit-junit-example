@@ -11,9 +11,6 @@ public class BaseTest {
     private final String DRIVER_PATH = "chromedriver.exe";
     private final String PAGE_URL = "https://s1.demo.opensourcecms.com/s/44";
 
-    protected final String USERNAME = "opensourcecms";
-    protected final String PASSWORD = "opensourcecms";
-
     {
         System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
     }
