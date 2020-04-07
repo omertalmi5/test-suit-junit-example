@@ -4,7 +4,7 @@ import Pages.OrganizationInfoPage;
 import Tests.BaseTest;
 import org.junit.Test;
 import static Constants.CONST.*;
-import static Processes.Functions.*;
+import static Processes.Utils.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsString;
 

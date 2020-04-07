@@ -5,9 +5,10 @@ import Pages.HomePage;
 import Pages.LocationsPage;
 import Tests.BaseTest;
 import org.junit.Test;
-import static Processes.Functions.loginAsAdmin;
+import static Processes.Utils.loginAsAdmin;
 
 public class AddLocationTest extends BaseTest {
+
     @Test
     public void addLocationTest() {
         loginAsAdmin(driver);
@@ -17,7 +18,7 @@ public class AddLocationTest extends BaseTest {
         LocationsPage locationsPage = new LocationsPage(driver);
         locationsPage.clickAddLocation();
         locationsPage.enterLocationName("hello");
-        locationsPage.enterLocationCountry(Country.ARGENTINA.toString());
+        locationsPage.enterLocationCountry(Country.ARGENTINA.NAME);
         locationsPage.saveLocation();
     }
 }

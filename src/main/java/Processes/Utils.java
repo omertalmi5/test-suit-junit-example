@@ -6,7 +6,7 @@ import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class Functions {
+public class Utils {
 
     public static void loginAsAdmin(WebDriver driver) {
         LoginPage loginPage = new LoginPage(driver);

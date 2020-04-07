@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class LocationsPage extends BasePage {
-    @FindBy (id = "rightMenu")
-    private WebElement locationPageFrame;
 
     @FindBy (id = "btnAdd")
     private WebElement addLocationButton;
@@ -24,10 +22,12 @@ public class LocationsPage extends BasePage {
     @FindBy (id = "btnSave")
     private WebElement saveLocationButton;
 
+    @FindBy (className = "messageBalloon_success")
+    private WebElement successMessage;
+
     public LocationsPage(WebDriver driver) {
         super(driver);
         initElements(new AjaxElementLocatorFactory(driver, 10), this);
-        driver.switchTo().frame(this.locationPageFrame);
     }
 
     public void clickAddLocation() {
