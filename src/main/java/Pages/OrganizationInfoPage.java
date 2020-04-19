@@ -1,13 +1,17 @@
 package Pages;
 
+import Objects.Organization;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
-import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class OrganizationInfoPage extends BasePage {
+    final String SUCCESS_MESSAGE_SELECTOR = "#messagebar > span";
+    final String INVALID_EMAIL_ERROR_SELECTOR = "#frmGenInfo > div:nth-child(10) > label > label";
+    final String INVALID_PHONE_ERROR_SELECTOR = "#frmGenInfo > div:nth-child(9) > label:nth-child(1) > label";
+    final String INVALID_FAX_ERROR_SELECTOR = "#frmGenInfo > div:nth-child(9) > label:nth-child(4) > label";
+
     @FindBy (id = "rightMenu")
     WebElement orgInfoPageFrame;
 
@@ -29,26 +33,29 @@ public class OrganizationInfoPage extends BasePage {
     @FindBy (id = "btnSaveGenInfo")
     WebElement saveButton;
 
-
-    @FindBy (css = "#messagebar > span")
+    @FindBy (css = SUCCESS_MESSAGE_SELECTOR)
     WebElement successMessage;
 
     @FindBy (className = "error")
     WebElement noOrganizationNameError;
 
-    @FindBy (css = "#frmGenInfo > div:nth-child(10) > label > label")
+    @FindBy (css = INVALID_EMAIL_ERROR_SELECTOR)
     WebElement invalidEmailError;
 
-    @FindBy (css = "#frmGenInfo > div:nth-child(9) > label:nth-child(1) > label")
+    @FindBy (css = INVALID_PHONE_ERROR_SELECTOR)
     WebElement invalidPhoneError;
 
-    @FindBy (css = "#frmGenInfo > div:nth-child(9) > label:nth-child(4) > label")
+    @FindBy (css = INVALID_FAX_ERROR_SELECTOR)
     WebElement invalidFaxError;
 
     public OrganizationInfoPage(WebDriver driver) {
         super(driver);
-        initElements(new AjaxElementLocatorFactory(driver, 10), this);
         driver.switchTo().frame(orgInfoPageFrame);
+    }
+
+    public void createNewInfo(Organization organization) {
+        this.clearAllFormFields();
+        this.fillFormWith(organization.getName(), organization.getEmail(), organization.getPhoneNumber(), organization.getFaxNumber());
     }
 
     public void fillFormWith(String name, String email, String phoneNumber, String faxNumber) {

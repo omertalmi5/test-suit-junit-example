@@ -4,17 +4,17 @@ import Pages.OrganizationInfoPage;
 import Tests.BaseTest;
 import org.junit.Test;
 import static Constants.CONST.*;
+import static Constants.Errors.REQUIRED_FIELD_ERROR;
 import static Processes.Utils.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.StringContains.containsString;
 
 public class OrganizationInfoWithNoName extends BaseTest {
     final String BLANK_ORGANIZATION_NAME = "";
-    final String REQUIRED_FIELD_ERROR = "Required";
+    final String REQUIRED_NAME_FIELD_ERROR = REQUIRED_FIELD_ERROR;
 
     @Test
-    public void addOrgInfoNegativeTest() {
-        loginAsAdmin(driver);
+    public void addOrganizationInfoWithNoNameTest() {
         goToOrganizationInfoPage(driver);
 
         OrganizationInfoPage organizationInfoPage = new OrganizationInfoPage(driver);
@@ -22,6 +22,6 @@ public class OrganizationInfoWithNoName extends BaseTest {
         organizationInfoPage.fillFormWith
                 (BLANK_ORGANIZATION_NAME, ORGANIZATION_EMAIL, ORGANIZATION_PHONE_NUMBER, ORGANIZATION_FAX_NUMBER);
 
-        assertThat(organizationInfoPage.getNoOrganizationNameErrorMessageText(), containsString(REQUIRED_FIELD_ERROR));
+        assertThat(organizationInfoPage.getNoOrganizationNameErrorMessageText(), is(REQUIRED_NAME_FIELD_ERROR));
     }
 }

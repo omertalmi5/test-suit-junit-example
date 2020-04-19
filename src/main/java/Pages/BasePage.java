@@ -2,6 +2,8 @@ package Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static Constants.CONST.SECONDS_TO_WAIT;
 import static org.openqa.selenium.support.PageFactory.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -16,8 +18,8 @@ public abstract class BasePage {
 
         protected BasePage(WebDriver driver) {
             this.driver = driver;
-            this.wait = new WebDriverWait(driver, 10);
-            initElements(new AjaxElementLocatorFactory(driver, 10), this);
+            this.wait = new WebDriverWait(driver, SECONDS_TO_WAIT);
+            initElements(new AjaxElementLocatorFactory(driver, SECONDS_TO_WAIT), this);
         }
 
         protected void type(WebElement element, String text) {

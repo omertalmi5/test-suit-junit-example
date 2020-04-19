@@ -2,9 +2,10 @@ package Tests;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static Processes.Utils.loginAsAdmin;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -20,6 +21,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.get(PAGE_URL);
         driver.manage().window().maximize();
+        loginAsAdmin(driver);
     }
 
     @After

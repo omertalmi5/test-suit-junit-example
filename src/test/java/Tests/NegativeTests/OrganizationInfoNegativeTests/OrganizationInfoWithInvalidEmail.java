@@ -4,17 +4,17 @@ import Pages.OrganizationInfoPage;
 import Tests.BaseTest;
 import org.junit.Test;
 import static Constants.CONST.*;
+import static Constants.Errors.INVALID_EMAIL_ERROR;
 import static Processes.Utils.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.StringContains.containsString;
 
 public class OrganizationInfoWithInvalidEmail extends BaseTest {
-    String INVALID_EMAIL = "invalidEmailFormat";
-    String INVALID_EMAIL_ERROR = "Expected format: admin@example.com";
+    final String INVALID_EMAIL = "invalidEmailFormat";
+    final String INVALID_ORGANIZATION_EMAIL_ERROR = INVALID_EMAIL_ERROR;
 
     @Test
-    public void OrgInfoWrongEmailTest() {
-        loginAsAdmin(driver);
+    public void organizationInfoWithWrongEmailTest() {
         goToOrganizationInfoPage(driver);
 
         OrganizationInfoPage organizationInfoPage = new OrganizationInfoPage(driver);
@@ -22,6 +22,6 @@ public class OrganizationInfoWithInvalidEmail extends BaseTest {
         organizationInfoPage.fillFormWith
                             (ORGANIZATION_NAME, INVALID_EMAIL, ORGANIZATION_PHONE_NUMBER, ORGANIZATION_FAX_NUMBER);
 
-        assertThat(organizationInfoPage.getEmailErrorMessageText(), containsString(INVALID_EMAIL_ERROR));
+        assertThat(organizationInfoPage.getEmailErrorMessageText(), is(INVALID_ORGANIZATION_EMAIL_ERROR));
     }
 }

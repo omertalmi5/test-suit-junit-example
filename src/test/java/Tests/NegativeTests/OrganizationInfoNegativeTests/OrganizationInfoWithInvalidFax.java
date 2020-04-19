@@ -4,16 +4,17 @@ import Pages.OrganizationInfoPage;
 import Tests.BaseTest;
 import org.junit.Test;
 import static Constants.CONST.*;
+import static Constants.Errors.INVALID_NUMBER_ERROR;
 import static Processes.Utils.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.StringContains.containsString;
 
 public class OrganizationInfoWithInvalidFax extends BaseTest {
     String INVALID_FAX_NUMBER = "invalidFaxFormat";
+    String INVALID_PHONE_NUMBER_ERROR = INVALID_NUMBER_ERROR;
 
     @Test
-    public void OrgInfoWithInvalidFaxTest() {
-        loginAsAdmin(driver);
+    public void organizationInfoWithInvalidFaxTest() {
         goToOrganizationInfoPage(driver);
 
         OrganizationInfoPage organizationInfoPage = new OrganizationInfoPage(driver);
@@ -21,6 +22,6 @@ public class OrganizationInfoWithInvalidFax extends BaseTest {
         organizationInfoPage.fillFormWith
                                 (ORGANIZATION_NAME, ORGANIZATION_EMAIL, ORGANIZATION_PHONE_NUMBER, INVALID_FAX_NUMBER);
 
-        assertThat(organizationInfoPage.getFaxErrorMessageText(), containsString(INVALID_PHONE_NUMBER_ERROR));
+        assertThat(organizationInfoPage.getFaxErrorMessageText(), is(INVALID_PHONE_NUMBER_ERROR));
     }
 }

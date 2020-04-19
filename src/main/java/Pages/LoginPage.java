@@ -18,7 +18,6 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        initElements(new AjaxElementLocatorFactory(driver, 3), this);
         driver.switchTo().frame(this.frame);
     }
 
