@@ -1,6 +1,6 @@
 package Constants;
 
-import Objects.Organization;
+import Entities.Organization;
 
 public class CONST {
     public static String ADMIN_USERNAME = "opensourcecms";
