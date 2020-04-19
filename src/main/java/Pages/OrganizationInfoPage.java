@@ -53,34 +53,6 @@ public class OrganizationInfoPage extends BasePage {
         driver.switchTo().frame(orgInfoPageFrame);
     }
 
-    public void createNewInfo(Organization organization) {
-        this.clearAllFormFields();
-        this.fillFormWith(organization.getName(), organization.getEmail(), organization.getPhoneNumber(), organization.getFaxNumber());
-    }
-
-    public void fillFormWith(String name, String email, String phoneNumber, String faxNumber) {
-        this.editButton.click();
-        this.organizationName.sendKeys(name);
-        this.organizationEmail.sendKeys(email);
-        this.organizationPhoneNumber.sendKeys(phoneNumber);
-        this.organizationFaxNumber.sendKeys(faxNumber);
-        this.saveButton.click();
-    }
-
-    public void clearAllFormFields() {
-        this.editButton.click();
-        this.organizationName.clear();
-        this.organizationEmail.clear();
-        this.organizationFaxNumber.clear();
-        this.organizationPhoneNumber.clear();
-        this.saveButton.click();
-    }
-
-    public String getSuccessMessageText() {
-        wait.until(visibilityOf(this.successMessage));
-        return (this.successMessage.getText());
-    }
-
     public String getNoOrganizationNameErrorMessageText() {
         return (this.noOrganizationNameError.getText());
     }
@@ -95,5 +67,37 @@ public class OrganizationInfoPage extends BasePage {
 
     public String getFaxErrorMessageText() {
         return (this.invalidFaxError.getText());
+    }
+
+    public void replaceInfoDetailsWith(Organization organization) {
+        this.clearAllFormFields();
+        this.fillFormWith(organization);
+    }
+
+    private void fillFormWith(String name, String email, String phoneNumber, String faxNumber) {
+        this.editButton.click();
+        this.organizationName.sendKeys(name);
+        this.organizationEmail.sendKeys(email);
+        this.organizationPhoneNumber.sendKeys(phoneNumber);
+        this.organizationFaxNumber.sendKeys(faxNumber);
+        this.saveButton.click();
+    }
+
+    private void fillFormWith(Organization organization) {
+        fillFormWith(organization.getName(), organization.getEmail(), organization.getPhoneNumber(), organization.getFaxNumber());
+    }
+
+    private void clearAllFormFields() {
+        this.editButton.click();
+        this.organizationName.clear();
+        this.organizationEmail.clear();
+        this.organizationFaxNumber.clear();
+        this.organizationPhoneNumber.clear();
+        this.saveButton.click();
+    }
+
+    public String getSuccessMessageText() {
+        wait.until(visibilityOf(this.successMessage));
+        return (this.successMessage.getText());
     }
 }

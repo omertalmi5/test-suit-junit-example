@@ -1,13 +1,16 @@
 package Tests.PositiveTests;
 
-import static org.hamcrest.core.StringContains.containsString;
 import Pages.HomePage;
 import Tests.BaseTest;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.hamcrest.core.StringContains.containsString;
 
 public class LoginTest extends BaseTest {
 
+    @Ignore
     @Test
     public void loginTest() {
         HomePage homePage = new HomePage(driver);

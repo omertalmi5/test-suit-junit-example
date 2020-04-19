@@ -1,31 +1,22 @@
 package Entities;
 
+import lombok.Builder;
+import lombok.Builder.Default;
+import lombok.Getter;
+import static Constants.CONST.*;
+
+@Getter
+@Builder(builderMethodName = "anOrganizationDetails")
 public class Organization {
-    private String name;
-    private String email;
-    private String faxNumber;
-    private String phoneNumber;
+    @Default
+    private String name = ORGANIZATION_NAME;
 
-    public Organization(String name, String email, String faxNumber, String phoneNumber) {
-        this.name = name;
-        this.email = email;
-        this.faxNumber = faxNumber;
-        this.phoneNumber = phoneNumber;
-    }
+    @Default
+    private String email = ORGANIZATION_EMAIL;
 
-    public String getName() {
-        return name;
-    }
+    @Default
+    private String faxNumber = ORGANIZATION_FAX_NUMBER;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getFaxNumber() {
-        return faxNumber;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    @Default
+    private String phoneNumber = ORGANIZATION_PHONE_NUMBER;
 }

@@ -1,27 +1,28 @@
 package Tests.NegativeTests.OrganizationInfoNegativeTests;
 
+import Entities.Organization;
 import Pages.OrganizationInfoPage;
 import Tests.BaseTest;
 import org.junit.Test;
-import static Constants.CONST.*;
+
 import static Constants.Errors.INVALID_NUMBER_ERROR;
-import static Processes.Utils.*;
+import static Entities.Organization.anOrganizationDetails;
+import static Processes.Utils.goToOrganizationInfoPage;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class OrganizationInfoWithInvalidFax extends BaseTest {
     String INVALID_FAX_NUMBER = "invalidFaxFormat";
-    String INVALID_PHONE_NUMBER_ERROR = INVALID_NUMBER_ERROR;
+    String INVALID_FAX_NUMBER_ERROR = INVALID_NUMBER_ERROR;
+    Organization organization = anOrganizationDetails().faxNumber(INVALID_FAX_NUMBER).build();
 
     @Test
     public void organizationInfoWithInvalidFaxTest() {
         goToOrganizationInfoPage(driver);
 
         OrganizationInfoPage organizationInfoPage = new OrganizationInfoPage(driver);
-        organizationInfoPage.clearAllFormFields();
-        organizationInfoPage.fillFormWith
-                                (ORGANIZATION_NAME, ORGANIZATION_EMAIL, ORGANIZATION_PHONE_NUMBER, INVALID_FAX_NUMBER);
+        organizationInfoPage.replaceInfoDetailsWith(organization);
 
-        assertThat(organizationInfoPage.getFaxErrorMessageText(), is(INVALID_PHONE_NUMBER_ERROR));
+        assertThat(organizationInfoPage.getFaxErrorMessageText(), is(INVALID_FAX_NUMBER_ERROR));
     }
 }

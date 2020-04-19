@@ -1,5 +1,7 @@
 package Constants;
 
+import Entities.Organization;
+
 public class Errors {
     public static final String INVALID_EMAIL_ERROR = "Expected format: admin@example.com";
     public static final String REQUIRED_FIELD_ERROR = "Required";

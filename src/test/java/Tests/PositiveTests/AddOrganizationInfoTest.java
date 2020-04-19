@@ -1,25 +1,27 @@
 package Tests.PositiveTests;
 
+import Entities.Organization;
 import Pages.OrganizationInfoPage;
 import Tests.BaseTest;
 import org.junit.Test;
-import static Constants.CONST.*;
+
+import static Constants.Errors.SAVE_SUCCESS_MESSAGE;
+import static Entities.Organization.anOrganizationDetails;
 import static Processes.Utils.goToOrganizationInfoPage;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddOrganizationInfoTest extends BaseTest {
-    final String SAVE_SUCCESS_MESSAGE = "Successfully Saved";
+    final String INFO_SAVE_SUCCESS_MESSAGE = SAVE_SUCCESS_MESSAGE;
+    Organization organizationInfo = anOrganizationDetails().build();
 
     @Test
-    public void AddOrganizationInfoTest() {
+    public void addOrganizationInfoTest() {
         goToOrganizationInfoPage(driver);
 
         OrganizationInfoPage organizationInfoPage = new OrganizationInfoPage(driver);
-        organizationInfoPage.clearAllFormFields();
-        organizationInfoPage.fillFormWith
-                            (ORGANIZATION_NAME, ORGANIZATION_EMAIL, ORGANIZATION_PHONE_NUMBER, ORGANIZATION_FAX_NUMBER);
+        organizationInfoPage.replaceInfoDetailsWith(organizationInfo);
 
-        assertThat(organizationInfoPage.getSuccessMessageText(), is(SAVE_SUCCESS_MESSAGE));
+        assertThat(organizationInfoPage.getSuccessMessageText(), is(INFO_SAVE_SUCCESS_MESSAGE));
     }
 }
