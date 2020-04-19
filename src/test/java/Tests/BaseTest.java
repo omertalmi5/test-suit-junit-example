@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static Processes.Utils.loginAsAdmin;
+
 public class BaseTest {
     protected WebDriver driver;
     private final String DRIVER_PATH = "chromedriver.exe";
@@ -19,6 +21,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.get(PAGE_URL);
         driver.manage().window().maximize();
+        loginAsAdmin(driver);
     }
 
     @After

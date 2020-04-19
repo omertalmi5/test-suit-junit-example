@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import static org.openqa.selenium.support.PageFactory.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class LoginPage extends BasePage {
     @FindBy (id = "txtUsername")
@@ -17,7 +18,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        initElements(driver, this);
+        driver.switchTo().frame(this.frame);
     }
 
     public void enterUsername(String username) {
