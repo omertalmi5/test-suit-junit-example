@@ -1,11 +1,11 @@
 package Tests.UnfinishedTests;
 
-import static Constants.Country.*;
 import Pages.HomePage;
 import Pages.LocationsPage;
 import Tests.BaseTest;
 import org.junit.Test;
 
+import static Constants.Country.ARGENTINA;
 import static Constants.Errors.SAVE_SUCCESS_MESSAGE;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
